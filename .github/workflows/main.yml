@@ -21,14 +21,10 @@ jobs:
     - name: Install dependencies
       run: pip install huggingface_hub
 
-    - name: Log in to Hugging Face
+    - name: Upload to Hugging Face
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
-      run: huggingface-cli login --token $HF_TOKEN
-
-    - name: Upload to Hugging Face
       run: |
+        # Directly upload without interactive login
         huggingface-cli repo create <parthamajp>/<llm_example> --type model --visibility public  # or 'private'
-        huggingface-cli upload <local-folder-to-upload> --repo-id <parthamajp>/<llm_example>
-
-
+        huggingface-cli upload <local-folder-to-upload> --repo-id <parthamajp>/<llm_example> --token $HF_TOKEN
