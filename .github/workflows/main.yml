@@ -1,32 +1,20 @@
-name: Upload to Hugging Face
-
+name: Sync to Hugging Face hub
 on:
   push:
-    branches:
-      - main  # Trigger workflow on push to the main branch
+    branches: [main]
+
+  # to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
-  upload-to-hf:
+  sync-to-hub:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
-
-    - name: Install dependencies
-      run: pip install huggingface_hub
-
-    - name: Create the repository (if it doesn't exist) and Upload
-      env:
-        HF_TOKEN: ${{ secrets.HF_TOKEN }}
-      run: |
-        # Create the repository on Hugging Face if it doesn't exist, automatically confirm creation
-        huggingface-cli repo create parthamajp/llm_example --type model -y
-        
-        # Upload the local folder (update the path to your folder)
-        huggingface-cli upload ./path/to/local/folder --repo-id parthamajp/llm_example --token $HF_TOKEN
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Push to hub
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: git push https://parthamajp:$HF_TOKEN@huggingface.co/spaces/parthamajp/llm_example main
