@@ -17,5 +17,5 @@ jobs:
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push https://parthamajp:$HF_TOKEN@huggingface.co/spaces/parthamajp/paravisionlab main
+        run: git push https://parthamajp:$HF_TOKEN@huggingface.co/spaces/parthamajp/llm_example main
 
