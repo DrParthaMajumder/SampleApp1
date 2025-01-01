@@ -1,20 +1,28 @@
-name: Sync to Hugging Face hub
+name: Sync to Hugging Face Hub
 on:
   push:
     branches: [main]
 
-  # to run this workflow manually from the Actions tab
+  # Allow manual triggering
   workflow_dispatch:
 
 jobs:
   sync-to-hub:
     runs-on: ubuntu-latest
     steps:
+      # Checkout the repository
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
           lfs: true
+
+      # Push to Hugging Face Hub
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push https://parthamajp:$HF_TOKEN@huggingface.co/spaces/parthamajp/paravisionlab main
+        run: |
+          git config --global user.email "parthamajpkk@gmail.com"
+          git config --global user.name "DrParthaMajumder"
+          git remote set-url origin https://huggingface.co/spaces/parthamajp/paravisionlab
+          git push https://parthamajp:$HF_TOKEN@huggingface.co/spaces/parthamajp/paravisionlab main
+
