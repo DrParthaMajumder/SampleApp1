@@ -24,5 +24,5 @@ jobs:
           git config --global user.email "parthamajpkk@gmail.com"
           git config --global user.name "DrParthaMajumder"
           git remote set-url origin https://huggingface.co/spaces/parthamajp/paravisionlab
-          git push https://parthamajp:$HF_TOKEN@huggingface.co/spaces/parthamajp/paravisionlab main
+          git push origin main
 
