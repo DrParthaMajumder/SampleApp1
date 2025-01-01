@@ -21,13 +21,14 @@ jobs:
     - name: Install dependencies
       run: pip install huggingface_hub
 
-    - name: Upload to Hugging Face
+    - name: Create the repository (if it doesn't exist) and Upload
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
       run: |
-        # Create the repository on Hugging Face
-        huggingface-cli repo create parthamajp/llm_example --type model --visibility public  # Replace with 'private' if needed
+        # Create the repository on Hugging Face if it doesn't exist
+        huggingface-cli repo create parthamajp/llm_example --type model  # Removed --visibility argument
         
         # Upload the local folder (update the path to your folder)
         huggingface-cli upload ./path/to/local/folder --repo-id parthamajp/llm_example --token $HF_TOKEN
+
 
