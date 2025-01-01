@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'
+        python-version: '3.9'
 
     - name: Install dependencies
       run: pip install huggingface_hub
@@ -30,6 +30,3 @@ jobs:
         
         # Upload the local folder (update the path to your folder)
         huggingface-cli upload ./path/to/local/folder --repo-id parthamajp/llm_example --token $HF_TOKEN
-
-
-
