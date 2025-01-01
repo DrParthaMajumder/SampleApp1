@@ -1,4 +1,4 @@
-# Step 1: Import Necessary Libraries
+# Step 1: Import Necessary Libraries important
 import streamlit as st
 from langchain_core.prompts.chat import ChatPromptTemplate
 from langchain.chains import LLMChain
