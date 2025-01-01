@@ -25,10 +25,11 @@ jobs:
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
       run: |
-        # Create the repository on Hugging Face if it doesn't exist
-        huggingface-cli repo create parthamajp/llm_example --type model  # Removed --visibility argument
+        # Create the repository on Hugging Face if it doesn't exist, automatically confirm creation
+        huggingface-cli repo create parthamajp/llm_example --type model -y
         
         # Upload the local folder (update the path to your folder)
         huggingface-cli upload ./path/to/local/folder --repo-id parthamajp/llm_example --token $HF_TOKEN
+
 
 
