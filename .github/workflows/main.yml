@@ -25,6 +25,9 @@ jobs:
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
       run: |
-        # Directly upload without interactive login
-        huggingface-cli repo create <parthamajp>/<llm_example> --type model --visibility public  # or 'private'
-        huggingface-cli upload <local-folder-to-upload> --repo-id <parthamajp>/<llm_example> --token $HF_TOKEN
+        # Create the repository on Hugging Face
+        huggingface-cli repo create parthamajp/llm_example --type model --visibility public  # Replace with 'private' if needed
+        
+        # Upload the local folder (update the path to your folder)
+        huggingface-cli upload ./path/to/local/folder --repo-id parthamajp/llm_example --token $HF_TOKEN
+
